@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<style>
+	.input_form{
+		border-radius: 10px;
+		background-color: powderblue;
+		text-align: center;
+		margin : 30px;
+		padding : 20px;
+		border: 1px solid black;
+	}
+
+	input[type=text]:hover{
+		background-color:orange;
+	}	
+	.top-container {
+		 background-color: #f1f1f1;
+		 padding: 10px;
+		 text-align: center;
+	}
+	</style>
+		<meta charset="UTF-8">
+		<title>~~ Search info from hklit ~~</title>
+	</head>
+	<body>
+		<div class=top-container>
+			<h1>Search Page</h1>
+		</div>
+
+		<form class = "input_form" method="POST" action = "/send">
+			 搜尋內容:<br> <input type="text" name="author_name" minlength="2" required><br><br>
+			 Where to search:<br> 
+			 <input type="radio" name="search_field" value="author" checked required>Author name<br> 
+			 <input type="radio" name="search_field" value="content" required> Title and full text<br><br>
+			 
+			 Get statistics?:<br> 
+			 <input type="radio" name="get_stat" value="T" checked required>Yes<br> 
+			 <input type="radio" name="get_stat" value="F" required> No<br><br>
+			 
+			 Get other name for the author?:<br> 
+			 <input type="radio" name="get_name_list" value="T" checked required>Yes<br> 
+			 <input type="radio" name="get_name_list" value="F" required> No<br><br>
+			 
+			 Separate result for each author name?:<br> 
+			 <input type="radio" name="separte_name" value="T" checked required>Yes<br> 
+			 <input type="radio" name="separte_name" value="F" required> No<br><br>
+			 <input type="submit" value="Submit">
+		</form>
+	</body>
+</html>

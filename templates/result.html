@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<style>
+	.input_form{
+		 border-radius: 10px;
+		 background-color: powderblue;
+		 text-align: center;
+	 	 margin : 30px;
+	 	 padding : 20px;
+	 	 border: 1px solid black;
+	}
+	
+	input[type=text]:hover{
+		background-color:orange;
+	}
+	.tablehor {
+		 height: 250px;
+		 overflow: auto;
+         overflow-x: auto;
+		 text-align:center;
+		 font-size:15px;
+    }
+	
+	.author_name{
+		 border: 1px solid yellow;
+		 text-align:center;
+		 border-radius: 10px;
+		 padding: 5px;
+		 margin: 5px;
+	}
+	.top-container {
+		 background-color: #f1f1f1;
+		 padding: 10px;
+		 text-align: center;
+	}
+	
+	.btn {
+		  border: none;
+		  background-color: silver;
+		  padding: 14px 28px;
+		  font-size: 16px;
+		  cursor: pointer;
+		  display: inline-block;
+		}
+
+	.btn:hover {background: #eee;}
+	
+	.wrapper {
+		text-align: center;
+		align:center ;
+		vertical-align: middle;
+		margin: auto;
+	}
+	
+	.div_for_btn{
+		height:60px;
+		margin: 20px; 
+	
+	}
+	
+	#button_container{
+		
+	}
+	</style>
+		 <meta charset="UTF-8">
+		 <title>~~ Search info from hklit ~~</title>
+	</head>
+	<body>
+		<div class=top-container>
+			<h1>Search Page</h1>
+		</div>
+		<form class = "input_form" method="POST" >
+			 搜尋內容:<br> <input type="text" name="author_name" minlength="2" required><br><br>
+			 Where to search:<br> 
+			 <input type="radio" name="search_field" value="author" checked required>Author name<br> 
+			 <input type="radio" name="search_field" value="content" required> Title and full text<br><br>
+			 
+			 Get statistics?:<br> 
+			 <input type="radio" name="get_stat" value="T" checked required>Yes<br> 
+			 <input type="radio" name="get_stat" value="F" required> No<br><br>
+			 
+			 Get other name for the author?:<br> 
+			 <input type="radio" name="get_name_list" value="T" checked required>Yes<br> 
+			 <input type="radio" name="get_name_list" value="F" required> No<br><br>
+			 
+			 Separate result for each author name?:<br> 
+			 <input type="radio" name="separte_name" value="T" checked required>Yes<br> 
+			 <input type="radio" name="separte_name" value="F" required> No<br><br>
+			 
+			 <input type="submit" value="Submit">
+		</form>
+		<div class="wrapper">
+		{% for key, tables in dataframe_collection.items() %}	
+				<div class="div_for_btn">
+					<button class="btn" onclick="myFunction('{{key}}') ; submitButtonStyle('{{loop.index}}' )" style="backgroundColor:silver">{{key}}</button>
+					<p id='{{loop.index}}' style="display:none;">Showing</p>
+				</div>
+				<div style="clear:both"></div>
+		{% endfor %}
+	
+		</div>
+		
+		{% for key, tables in dataframe_collection.items() %}	
+			<div class=author_name id='{{key}}' style="display:none">
+				<h1 text-color:gray>{{key}}</h1>
+					<div class="tablehor">
+						{{ tables.to_html()|safe }}
+					</div>
+			</div>
+		{% endfor %}
+		
+		<script>
+		
+		
+				
+			function myFunction(key) {
+				console.log(key);
+				var x = document.getElementById(key);
+				if (x.style.display === "none") {
+					x.style.display = "block";
+					} else {
+					x.style.display = "none";
+			  }
+			}
+			
+			function submitButtonStyle(for_loop_count) {
+				console.log(for_loop_count);
+				var x = document.getElementById(for_loop_count);
+				if (x.style.display === "none") {
+					x.style.display = "block";
+					} else {
+					x.style.display = "none";
+			
+			}
+			}
+		</script>
+		
+	</body>
+</html>
+
